@@ -39,6 +39,3 @@ The dataset used for this project is available on Kaggle:
 
 
 
-"diabetes_med" - whether a diabetes medication was prescribed ('yes' or 'no')
-
-"readmitted" - if the patient was readmitted at the hospital ('yes' or 'no')
