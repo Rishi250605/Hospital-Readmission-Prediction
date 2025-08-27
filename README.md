@@ -40,12 +40,9 @@ The dataset used for this project is available on Kaggle:
 
 ## Demo of the Project
 
-Below is a demonstration video of the Hospital Readmission Prediction project:
+The demonstration video of the Hospital Readmission Prediction project is mentioned as Demo.mp4 above.
 
-<video width="700" controls>
-  <source src="Demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
 
 
 
