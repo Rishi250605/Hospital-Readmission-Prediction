@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Hospital Readmission Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar (shared across all pages) -->
+    <header class="app-header" role="banner">
+        <div class="container header-inner">
+            <div class="brand" aria-label="Hospital Readmission Predictor">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">ReadmitAI</span>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a></li>
+                    <li><a href="/predict" class="nav-link{% if request.path.startswith('/predict') %} active{% endif %}">Predict</a></li>
+                    <li><a href="/about" class="nav-link{% if request.path == '/about' %} active{% endif %}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container" style="max-width: 700px; margin: 48px auto 0 auto;">
+        <div class="card" style="margin-top: 48px;">
+            <h1 style="margin-bottom: 18px;">About ReadmitAI</h1>
+            <p>
+                <strong>ReadmitAI</strong> is a demonstration project that predicts the risk of hospital readmission using machine learning and explainable AI (XAI) techniques.
+            </p>
+            <ul>
+                <li>Predicts 30-day readmission risk for discharged patients based on clinical and demographic data.</li>
+                <li>Provides transparent explanations for each prediction using SHAP (SHapley Additive exPlanations).</li>
+                <li>Helps clinicians identify high-risk patients and optimize follow-up care.</li>
+            </ul>
+            <p style="color: #64748b; font-size: 1rem;">
+                <em>Disclaimer: This tool is for demonstration and educational purposes only. It is not intended for clinical decision-making.</em>
+            </p>
+            <hr>
+            <h2 style="font-size: 1.2rem; margin-top: 24px;">How does it work?</h2>
+            <p>
+                The model uses a Random Forest classifier trained on anonymized patient data. It considers factors such as age, length of stay, diagnoses, prior visits, lab results, and medication changes.
+            </p>
+            <p>
+                For each prediction, the system provides a detailed explanation of the most influential features and their impact on the risk score.
+            </p>
+            <hr>
+            <p style="font-size: 0.95rem; color: #64748b;">
+                Project by <strong>Your Team/Institution</strong> &middot; Source code available upon request.
+            </p>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="container footer-inner">
+            <span>© <span id="year"></span> ReadmitAI</span>
+            <span class="muted">Demo only • Not for clinical use</span>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

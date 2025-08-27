@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict Hospital Readmission</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar (shared across all pages) -->
+    <header class="app-header" role="banner">
+        <div class="container header-inner">
+            <div class="brand" aria-label="Hospital Readmission Predictor">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">ReadmitAI</span>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a></li>
+                    <li><a href="/predict" class="nav-link{% if request.path.startswith('/predict') %} active{% endif %}">Predict</a></li>
+                    <li><a href="/about" class="nav-link{% if request.path == '/about' %} active{% endif %}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container" style="min-height: 80vh;">
+        <div class="card" style="max-width: 650px; margin: 48px auto 0 auto; box-shadow: 0 8px 32px rgba(30,64,175,0.10);">
+            <h2 style="margin-bottom: 18px; font-size: 2rem; font-weight: 800; color: #2563eb; text-align:center;">Predict Hospital Readmission</h2>
+            
+            <form class="form" method="POST" autocomplete="off">
+                <div class="grid grid-2" style="gap: 24px;">
+                    <div class="form-field">
+                        <label for="age">Age Group</label>
+                        <select name="age" id="age" required>
+                            <option value="">Select</option>
+                            <option>[0-10)</option>
+                            <option>[10-20)</option>
+                            <option>[20-30)</option>
+                            <option>[30-40)</option>
+                            <option>[40-50)</option>
+                            <option>[50-60)</option>
+                            <option>[60-70)</option>
+                            <option>[70-80)</option>
+                            <option>[80-90)</option>
+                            <option>[90-100)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="time_in_hospital">Time in Hospital</label>
+                        <input type="number" name="time_in_hospital" id="time_in_hospital" min="1" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_lab_procedures">Lab Procedures</label>
+                        <input type="number" name="n_lab_procedures" id="n_lab_procedures" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_procedures">Procedures</label>
+                        <input type="number" name="n_procedures" id="n_procedures" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_medications">Medications</label>
+                        <input type="number" name="n_medications" id="n_medications" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_outpatient">Outpatient Visits</label>
+                        <input type="number" name="n_outpatient" id="n_outpatient" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_inpatient">Inpatient Visits</label>
+                        <input type="number" name="n_inpatient" id="n_inpatient" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="n_emergency">Emergency Visits</label>
+                        <input type="number" name="n_emergency" id="n_emergency" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="medical_specialty">Medical Specialty</label>
+                        <select name="medical_specialty" id="medical_specialty" required>
+                            <option value="">Select</option>
+                            <option value="Missing">Missing</option>
+                            <option value="Other">Other</option>
+                            <option value="Family/GeneralPractice">Family/GeneralPractice</option>
+                            <option value="InternalMedicine">InternalMedicine</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Surgery">Surgery</option>
+                            <option value="Emergency/Trauma">Emergency/Trauma</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="diag_1">Diagnosis 1</label>
+                        <select name="diag_1" id="diag_1" required>
+                            <option value="">Select</option>
+                            <option value="Circulatory">Circulatory</option>
+                            <option value="Respiratory">Respiratory</option>
+                            <option value="Other">Other</option>
+                            <option value="Musculoskeletal">Musculoskeletal</option>
+                            <option value="Digestive">Digestive</option>
+                            <option value="Injury">Injury</option>
+                            <option value="Diabetes">Diabetes</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="diag_2">Diagnosis 2</label>
+                        <select name="diag_2" id="diag_2" required>
+                            <option value="">Select</option>
+                            <option value="Circulatory">Circulatory</option>
+                            <option value="Respiratory">Respiratory</option>
+                            <option value="Other">Other</option>
+                            <option value="Musculoskeletal">Musculoskeletal</option>
+                            <option value="Digestive">Digestive</option>
+                            <option value="Injury">Injury</option>
+                            <option value="Diabetes">Diabetes</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="diag_3">Diagnosis 3</label>
+                        <select name="diag_3" id="diag_3" required>
+                            <option value="">Select</option>
+                            <option value="Circulatory">Circulatory</option>
+                            <option value="Respiratory">Respiratory</option>
+                            <option value="Other">Other</option>
+                            <option value="Musculoskeletal">Musculoskeletal</option>
+                            <option value="Digestive">Digestive</option>
+                            <option value="Injury">Injury</option>
+                            <option value="Diabetes">Diabetes</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="glucose_test">Glucose Test</label>
+                        <select name="glucose_test" id="glucose_test" required>
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="A1Ctest">A1C Test</label>
+                        <select name="A1Ctest" id="A1Ctest" required>
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="change">Change in Medication</label>
+                        <select name="change" id="change" required>
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="diabetes_med">Diabetes Medication</label>
+                        <select name="diabetes_med" id="diabetes_med" required>
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions" style="justify-content:center; margin-top: 28px;">
+                    <button class="btn btn-primary" type="submit" style="font-size: 1.1rem; min-width: 120px;">Predict</button>
+                </div>
+            </form>
+
+            <!-- Results Section with XAI -->
+            {% if prediction is not none %}
+            <div class="results-section" style="margin-top: 32px;">
+                <!-- Basic Prediction Results -->
+                <div class="results" style="margin-bottom: 24px;">
+                    <div class="results-header" style="justify-content:center;">
+                        <span class="risk-indicator {% if prediction == 'yes' %}risk-high{% else %}risk-low{% endif %}" style="font-size:1.1rem;">
+                            {{ "Readmission Likely" if prediction == 'yes' else "Low Readmission Risk" }}
+                        </span>
+                    </div>
+                    <div class="probability" style="text-align:center;">
+                        <span class="prob-label">Probability:</span>
+                        <span>{{ "%.1f%%"|format(probability * 100) }}</span>
+                        {% if explanation and explanation.get('threshold') %}
+                        <small style="color: #64748b; display: block; margin-top: 4px;">
+                            (Threshold: {{ "%.1f%%"|format(explanation.threshold * 100) }})
+                        </small>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- XAI Explanation Section -->
+                {% if explanation %}
+                <div class="xai-explanation">
+                    <!-- Explanation Text -->
+                    {% if explanation.get('explanation_text') %}
+                    <div class="explanation-card">
+                        <h3 style="color: #1e40af; margin-bottom: 12px; font-size: 1.2rem;">Why this prediction?</h3>
+                        <div class="explanation-content">
+                            {{ explanation.explanation_text | safe }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- SHAP Plot -->
+                    {% if explanation.get('shap_plot') %}
+                    <div class="shap-plot-card" style="margin-top: 20px;">
+                        <h3 style="color: #1e40af; margin-bottom: 12px; font-size: 1.2rem;">Feature Importance</h3>
+                        <div class="shap-plot-container" style="text-align: center;">
+                            <img src="{{ explanation.shap_plot }}" alt="SHAP Feature Importance" style="max-width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Top Features Table -->
+                    {% if explanation.get('top_features') %}
+                    <div class="features-table-card" style="margin-top: 20px;">
+                        <h3 style="color: #1e40af; margin-bottom: 12px; font-size: 1.2rem;">Key Contributing Factors</h3>
+                        <div class="features-table-container">
+                            <table class="features-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Impact</th>
+                                        <th>Effect</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for feature in explanation.top_features[:8] %}
+                                    <tr>
+                                        <td>{{ feature.feature }}</td>
+                                        <td class="impact-value {% if feature.importance > 0 %}positive{% else %}negative{% endif %}">
+                                            {{ "%.3f"|format(feature.importance) }}
+                                        </td>
+                                        <td class="impact-direction">
+                                            {% if feature.importance > 0 %}
+                                            <span class="increase">↗ Increases Risk</span>
+                                            {% else %}
+                                            <span class="decrease">↘ Decreases Risk</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Show expandable detailed features if available -->
+                    {% if explanation.get('all_features') and explanation.all_features|length > 8 %}
+                    <div class="expandable-features" style="margin-top: 16px;">
+                        <button class="btn-expand" onclick="toggleAllFeatures()" style="background: none; border: 1px solid #2563eb; color: #2563eb; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">
+                            Show All Features ({{ explanation.all_features|length }})
+                        </button>
+                        <div id="all-features-table" style="display: none; margin-top: 16px;">
+                            <table class="features-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Impact</th>
+                                        <th>Effect</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for feature in explanation.all_features %}
+                                    <tr>
+                                        <td>{{ feature.feature }}</td>
+                                        <td class="impact-value {% if feature.importance > 0 %}positive{% else %}negative{% endif %}">
+                                            {{ "%.3f"|format(feature.importance) }}
+                                        </td>
+                                        <td class="impact-direction">
+                                            {% if feature.importance > 0 %}
+                                            <span class="increase">↗ Increases Risk</span>
+                                            {% else %}
+                                            <span class="decrease">↘ Decreases Risk</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Error handling -->
+                    {% if explanation.get('error') %}
+                    <div class="error-message" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 12px; border-radius: 6px; margin-top: 16px;">
+                        <strong>Note:</strong> Basic prediction available. Detailed explanation temporarily unavailable.
+                        <details style="margin-top: 8px;">
+                            <summary style="cursor: pointer;">Technical details</summary>
+                            <pre style="font-size: 12px; margin-top: 8px;">{{ explanation.error }}</pre>
+                        </details>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <div class="container footer-inner">
+            <span>© <span id="year"></span> ReadmitAI</span>
+            <span class="muted">Demo only • Not for clinical use</span>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        function toggleAllFeatures() {
+            const table = document.getElementById('all-features-table');
+            const button = document.querySelector('.btn-expand');
+            
+            if (table.style.display === 'none') {
+                table.style.display = 'block';
+                button.textContent = 'Hide All Features';
+            } else {
+                table.style.display = 'none';
+                button.textContent = 'Show All Features ({{ explanation.all_features|length if explanation and explanation.all_features else 0 }})';
+            }
+        }
+    </script>
+</body>
+</html>

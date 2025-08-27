@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Readmission Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar (shared across all pages) -->
+    <header class="app-header" role="banner">
+        <div class="container header-inner">
+            <div class="brand" aria-label="Hospital Readmission Predictor">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">ReadmitAI</span>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a></li>
+                    <li><a href="/predict" class="nav-link{% if request.path.startswith('/predict') %} active{% endif %}">Predict</a></li>
+                    <li><a href="/about" class="nav-link{% if request.path == '/about' %} active{% endif %}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <section class="hero" style="padding: 60px 0 20px;">
+            <div class="hero-inner" style="display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 32px;">
+                <div class="hero-copy">
+                    <h1>AI-Powered Hospital Readmission Prediction</h1>
+                    <p>Identify at-risk patients before discharge, optimize follow-up care, and reduce avoidable readmissions.</p>
+                    <div class="hero-actions" style="display: flex; gap: 12px;">
+                        <a href="/predict" class="btn btn-primary">Try Single Prediction</a>
+                    </div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <!-- Abstract SVG for visual appeal -->
+                    <svg viewBox="0 0 400 300" class="hero-svg" style="width:100%;height:auto;">
+                        <defs>
+                            <linearGradient id="gradBlue" x1="0" x2="1" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#2563eb" />
+                                <stop offset="100%" stop-color="#1e40af" />
+                            </linearGradient>
+                        </defs>
+                        <g fill="url(#gradBlue)" opacity="0.15">
+                            <circle cx="60" cy="60" r="48" />
+                            <circle cx="180" cy="120" r="72" />
+                            <circle cx="320" cy="80" r="40" />
+                            <circle cx="280" cy="220" r="68" />
+                        </g>
+                        <g stroke="#2563eb" stroke-width="2" fill="none" opacity="0.6">
+                            <path d="M20 200 C80 120, 160 260, 220 180 S340 120, 380 220" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <div class="stats" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px;">
+            <div class="card stat-card">
+                <div class="stat-value">58.68%</div>
+                <div class="stat-label">Model Accuracy</div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-value">0.635</div>
+                <div class="stat-label">ROC-AUC Score</div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-value">0.45</div>
+                <div class="stat-label">Cost-Optimal Threshold</div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-value">25,000+</div>
+                <div class="stat-label">Patients Analyzed</div>
+            </div>
+        </div>
+        <div class="sample-patients" style="margin-top: 40px;">
+            <h2>Sample Patients</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>High Risk</h3>
+                    <p>75-year-old, diabetes, 8 day stay, multiple medications.</p>
+                </div>
+                <div class="card">
+                    <h3>Moderate Risk</h3>
+                    <p>55-year-old, circulatory issues, 4 day stay.</p>
+                </div>
+                <div class="card">
+                    <h3>Low Risk</h3>
+                    <p>35-year-old, minor procedure, 2 day stay.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="container footer-inner">
+            <span>© <span id="year"></span> ReadmitAI</span>
+            <span class="muted">Demo only • Not for clinical use</span>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
