@@ -38,4 +38,14 @@ The dataset used for this project is available on Kaggle:
 - **readmitted**: Whether the patient was readmitted to the hospital (yes or no)
 
 
+## Demo of the Project
+
+Below is a demonstration video of the Hospital Readmission Prediction project:
+
+<video width="700" controls>
+  <source src="Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
 
