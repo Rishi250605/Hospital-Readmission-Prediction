@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Navbar (shared across all pages) -->
+    
     <header class="app-header" role="banner">
         <div class="container header-inner">
             <div class="brand" aria-label="Hospital Readmission Predictor">
@@ -29,11 +29,11 @@
                     <h1>AI-Powered Hospital Readmission Prediction</h1>
                     <p>Identify at-risk patients before discharge, optimize follow-up care, and reduce avoidable readmissions.</p>
                     <div class="hero-actions" style="display: flex; gap: 12px;">
-                        <a href="/predict" class="btn btn-primary">Try Single Prediction</a>
+                        <a href="/predict" class="btn btn-primary">Try Prediction</a>
                     </div>
                 </div>
                 <div class="hero-art" aria-hidden="true">
-                    <!-- Abstract SVG for visual appeal -->
+                    
                     <svg viewBox="0 0 400 300" class="hero-svg" style="width:100%;height:auto;">
                         <defs>
                             <linearGradient id="gradBlue" x1="0" x2="1" y1="0" y2="1">
@@ -64,32 +64,15 @@
                 <div class="stat-label">ROC-AUC Score</div>
             </div>
             <div class="card stat-card">
-                <div class="stat-value">0.45</div>
+                <div class="stat-value">0.40</div>
                 <div class="stat-label">Cost-Optimal Threshold</div>
             </div>
             <div class="card stat-card">
-                <div class="stat-value">25,000+</div>
+                <div class="stat-value">25,000</div>
                 <div class="stat-label">Patients Analyzed</div>
             </div>
         </div>
-        <div class="sample-patients" style="margin-top: 40px;">
-            <h2>Sample Patients</h2>
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3>High Risk</h3>
-                    <p>75-year-old, diabetes, 8 day stay, multiple medications.</p>
-                </div>
-                <div class="card">
-                    <h3>Moderate Risk</h3>
-                    <p>55-year-old, circulatory issues, 4 day stay.</p>
-                </div>
-                <div class="card">
-                    <h3>Low Risk</h3>
-                    <p>35-year-old, minor procedure, 2 day stay.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        
     <footer class="app-footer">
         <div class="container footer-inner">
             <span>© <span id="year"></span> ReadmitAI</span>

@@ -30,91 +30,91 @@
             <form class="form" method="POST" autocomplete="off">
                 <div class="grid grid-2" style="gap: 24px;">
                     <div class="form-field">
-                        <label for="age">Age Group</label>
+                        <label for="age">Patient Age Group</label>
                         <select name="age" id="age" required>
                             <option value="">Select</option>
-                            <option>[0-10)</option>
-                            <option>[10-20)</option>
-                            <option>[20-30)</option>
-                            <option>[30-40)</option>
-                            <option>[40-50)</option>
-                            <option>[50-60)</option>
-                            <option>[60-70)</option>
-                            <option>[70-80)</option>
-                            <option>[80-90)</option>
-                            <option>[90-100)</option>
+                            <option>[0-10]</option>
+                            <option>[10-20]</option>
+                            <option>[20-30]</option>
+                            <option>[30-40]</option>
+                            <option>[40-50]</option>
+                            <option>[50-60]</option>
+                            <option>[60-70]</option>
+                            <option>[70-80]</option>
+                            <option>[80-90]</option>
+                            <option>[90-100]</option>
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="time_in_hospital">Time in Hospital</label>
+                        <label for="time_in_hospital">Days Spent in Hospital</label>
                         <input type="number" name="time_in_hospital" id="time_in_hospital" min="1" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_lab_procedures">Lab Procedures</label>
+                        <label for="n_lab_procedures">Number of Lab Tests</label>
                         <input type="number" name="n_lab_procedures" id="n_lab_procedures" min="0" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_procedures">Procedures</label>
+                        <label for="n_procedures">Number of Medical Procedures</label>
                         <input type="number" name="n_procedures" id="n_procedures" min="0" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_medications">Medications</label>
+                        <label for="n_medications">Number of Medications Given</label>
                         <input type="number" name="n_medications" id="n_medications" min="0" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_outpatient">Outpatient Visits</label>
+                        <label for="n_outpatient">Outpatient Visits (in days)</label>
                         <input type="number" name="n_outpatient" id="n_outpatient" min="0" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_inpatient">Inpatient Visits</label>
+                        <label for="n_inpatient">Previous Hospital Admissions (in days)</label>
                         <input type="number" name="n_inpatient" id="n_inpatient" min="0" required>
                     </div>
                     <div class="form-field">
-                        <label for="n_emergency">Emergency Visits</label>
+                        <label for="n_emergency">Emergency Room Visits  (in days)</label>
                         <input type="number" name="n_emergency" id="n_emergency" min="0" required>
                     </div>
                 
                     <div class="form-field">
-                        <label for="diag_1">Diagnosis 1</label>
+                        <label for="diag_1">Main Reason for Hospital Stay</label>
                         <select name="diag_1" id="diag_1" required>
                             <option value="">Select</option>
                             <option value="Circulatory">Circulatory</option>
                             <option value="Respiratory">Respiratory</option>
-                            <option value="Other">Other</option>
                             <option value="Musculoskeletal">Musculoskeletal</option>
                             <option value="Digestive">Digestive</option>
                             <option value="Injury">Injury</option>
                             <option value="Diabetes">Diabetes</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="diag_2">Diagnosis 2</label>
+                        <label for="diag_2">Second Health Issue</label>
                         <select name="diag_2" id="diag_2" required>
                             <option value="">Select</option>
                             <option value="Circulatory">Circulatory</option>
                             <option value="Respiratory">Respiratory</option>
-                            <option value="Other">Other</option>
                             <option value="Musculoskeletal">Musculoskeletal</option>
                             <option value="Digestive">Digestive</option>
                             <option value="Injury">Injury</option>
                             <option value="Diabetes">Diabetes</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="diag_3">Diagnosis 3</label>
+                        <label for="diag_3">Third Health Issue</label>
                         <select name="diag_3" id="diag_3" required>
                             <option value="">Select</option>
                             <option value="Circulatory">Circulatory</option>
                             <option value="Respiratory">Respiratory</option>
-                            <option value="Other">Other</option>
                             <option value="Musculoskeletal">Musculoskeletal</option>
                             <option value="Digestive">Digestive</option>
                             <option value="Injury">Injury</option>
                             <option value="Diabetes">Diabetes</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="glucose_test">Glucose Test</label>
+                        <label for="glucose_test">Glucose Blood Test Result</label>
                         <select name="glucose_test" id="glucose_test" required>
                             <option value="">Select</option>
                             <option value="no">No</option>
@@ -123,7 +123,7 @@
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="A1Ctest">A1C Test</label>
+                        <label for="A1Ctest">A1C Blood Test Result</label>
                         <select name="A1Ctest" id="A1Ctest" required>
                             <option value="">Select</option>
                             <option value="no">No</option>
@@ -132,7 +132,7 @@
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="change">Change in Medication</label>
+                        <label for="change">Change in Diabetes Medication</label>
                         <select name="change" id="change" required>
                             <option value="">Select</option>
                             <option value="no">No</option>
@@ -140,7 +140,7 @@
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="diabetes_med">Diabetes Medication</label>
+                        <label for="diabetes_med">Was Diabetes Medication Prescribed?</label>
                         <select name="diabetes_med" id="diabetes_med" required>
                             <option value="">Select</option>
                             <option value="no">No</option>
