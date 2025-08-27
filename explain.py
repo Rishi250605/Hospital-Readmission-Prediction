@@ -79,26 +79,26 @@ class ModelExplainer:
 
         preprocessor = self.pipeline.named_steps['preprocessor']
 
-        # Enhanced feature name mapping for better interpretability
+        # Enhanced feature name mapping for better interpretability (layman-friendly)
         feature_name_mapping = {
-            'time_in_hospital': 'Length of Hospital Stay',
-            'n_procedures': 'Number of Procedures',
+            'time_in_hospital': 'Days Spent in Hospital',
+            'n_procedures': 'Number of Medical Procedures',
             'n_lab_procedures': 'Number of Lab Tests',
-            'n_medications': 'Number of Medications',
-            'n_outpatient': 'Outpatient Visits (Prior Year)',
-            'n_inpatient': 'Inpatient Visits (Prior Year)',
-            'n_emergency': 'Emergency Visits (Prior Year)',
+            'n_medications': 'Number of Medications Given',
+            'n_outpatient': 'Outpatient Visits (Past Year)',
+            'n_inpatient': 'Previous Hospital Admissions (Past Year)',
+            'n_emergency': 'Emergency Room Visits (Past Year)',
             'n_visits': 'Total Healthcare Visits',
-            'proc_med_ratio': 'Procedure-to-Medication Ratio',
+            'proc_med_ratio': 'Procedures to Medications Ratio',
             'age_encoded': 'Patient Age Group',
-            'medical_specialty': 'Medical Specialty',
-            'diag_1': 'Primary Diagnosis',
-            'diag_2': 'Secondary Diagnosis',
-            'diag_3': 'Additional Diagnosis',
-            'glucose_test': 'Glucose Test Result',
-            'A1Ctest': 'A1C Test Result',
-            'change_in_med': 'Medication Changes',
-            'diabetes_med': 'Diabetes Medication Usage'
+            'medical_specialty': 'Doctor\'s Specialty',
+            'diag_1': 'Main Reason for Hospital Stay',
+            'diag_2': 'Second Health Issue',
+            'diag_3': 'Third Health Issue',
+            'glucose_test': 'Glucose Blood Test Result',
+            'A1Ctest': 'A1C Blood Test Result',
+            'change_in_med': 'Change in Diabetes Medication',
+            'diabetes_med': 'Was Diabetes Medication Prescribed?'
         }
 
         # 1) Best case: sklearn exposes names directly
@@ -358,18 +358,25 @@ class ModelExplainer:
         return f"This factor {magnitude} {direction} readmission risk"
     
     def _get_clinical_significance(self, feature_name, importance):
-        """Provide clinical context for features"""
+        """Provide clinical context for features (layman-friendly)"""
         clinical_context = {
-            'Length of Hospital Stay': 'Longer stays may indicate complexity but can also provide more treatment time',
-            'Number of Lab Tests': 'More tests may suggest closer monitoring or complex conditions',
-            'Number of Medications': 'Higher medication counts often indicate multiple comorbidities',
-            'Outpatient Visits (Prior Year)': 'Regular outpatient care can be preventive or indicate chronic conditions',
-            'Emergency Visits (Prior Year)': 'Previous emergency visits are strong predictors of future utilization',
-            'Primary Diagnosis': 'The main condition being treated significantly influences readmission risk',
-            'Diabetes Medication Usage': 'Diabetes management complexity affects readmission likelihood'
+            'Days Spent in Hospital': 'Longer stays may mean more serious illness or better recovery time.',
+            'Number of Lab Tests': 'More lab tests can mean closer monitoring or more health issues.',
+            'Number of Medications Given': 'Taking more medications often means more health problems.',
+            'Outpatient Visits (Past Year)': 'Regular outpatient care can help prevent problems or show ongoing issues.',
+            'Previous Hospital Admissions (Past Year)': 'More past admissions can mean ongoing health challenges.',
+            'Emergency Room Visits (Past Year)': 'Frequent ER visits may signal unstable health.',
+            'Main Reason for Hospital Stay': 'The main illness or reason for admission affects readmission risk.',
+            'Was Diabetes Medication Prescribed?': 'Managing diabetes with medication can affect readmission chances.',
+            'Patient Age Group': 'Certain age groups may have higher risk of returning to the hospital.',
+            'Doctor\'s Specialty': 'The type of doctor treating the patient can influence outcomes.',
+            'Second Health Issue': 'Other health problems can add to the risk.',
+            'Third Health Issue': 'Additional health issues may further increase risk.',
+            'Glucose Blood Test Result': 'Abnormal blood sugar can increase risk.',
+            'A1C Blood Test Result': 'High A1C means poor long-term blood sugar control.',
+            'Change in Diabetes Medication': 'Changing diabetes medication may mean unstable diabetes.'
         }
-        
-        return clinical_context.get(feature_name, 'Clinical significance varies based on patient context')
+        return clinical_context.get(feature_name, 'This factor may affect readmission risk depending on the patient.')
     
     def _generate_risk_assessment(self, prediction, probability, threshold):
         """Generate detailed risk assessment"""
