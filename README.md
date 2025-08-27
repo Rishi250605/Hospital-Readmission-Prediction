@@ -37,14 +37,7 @@ The dataset used for this project is available on Kaggle:
 - **diabetes_med**: Whether a diabetes medication was prescribed (yes or no)
 - **readmitted**: Whether the patient was readmitted to the hospital (yes or no)
 
-## Usage
 
-This repository contains code and documentation for building and evaluating predictive models for hospital readmission risk. The goal is to support healthcare professionals in making data-driven decisions to reduce unplanned readmissions and improve patient outcomes.
-"glucose_test" - whether the glucose serum came out as high (> 200), normal, or not performed
-
-"A1Ctest" - whether the A1C level of the patient came out as high (> 7%), normal, or not performed
-
-"change" - whether there was a change in the diabetes medication ('yes' or 'no')
 
 "diabetes_med" - whether a diabetes medication was prescribed ('yes' or 'no')
 
